@@ -1,16 +1,13 @@
-// use std::fs::File;
-use std::fs;
-
-// use std::io::Read;
+use std::fs::File;
 use std::path::Path;
+use std::io::Read;
 fn main() {
     // opening a file
     let file_path = Path::new("src").join("hello.txt");
-    // let mut txt_file = File::open(file_path).expect("Failed to open file");
+    let mut txt_file = File::open(file_path).expect("Failed to open file");
 
-    //reading the file
-    let content = fs::read_to_string(file_path).expect("Failed to read file content");
-    println!("{}", content); 
-
-   
+    //reading the file in vector
+    let mut contents = Vec::new();
+    txt_file.read_to_end(&mut contents).expect("Failed to open file");
+    println!("{:?}",contents); 
 }
